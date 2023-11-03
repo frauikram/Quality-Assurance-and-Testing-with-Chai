@@ -22,15 +22,17 @@ suite('Functional Tests', function () {
           done();
         });
     });
+
     // #2
-    test('Test GET /hello with your name', function (done) {
+    // Run Functional Tests on API Endpoints using Chai-HTTP II
+    test('Test GET /hello with your name', function(done) {
       chai
         .request(server)
         .keepOpen()
         .get('/hello?name=xy_z')
-        .end(function (err, res) {
-          assert.fail(res.status, 200);
-          assert.fail(res.text, 'hello xy_z');
+        .end(function(err, res) {
+          assert.equal(res.status, 200);
+          assert.equal(res.text, 'hello xy_z');
           done();
         });
     });

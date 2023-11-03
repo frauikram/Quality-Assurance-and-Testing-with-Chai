@@ -55,15 +55,36 @@ suite('Functional Tests', function () {
           done();
         });
     });
-    // #4
-    test('Send {surname: "da Verrazzano"}', function (done) {
-      assert.fail();
 
-      done();
+    // #4
+    // Run Functional Tests on an API Response using Chai-HTTP IV - PUT method
+    test('Send {surname: "da Verrazzano"}', function(done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .put('/travellers')
+        .send({
+          "surname": "da Verrazzano"
+        })
+        .end(function(err, res) {
+          assert.equal(res.status, 200);
+          assert.equal(res.type, "application/json");
+          assert.equal(res.body.name, "Giovanni");
+          assert.equal(res.body.surname, "da Verrazzano");
+
+          done();
+        });
     });
-  });
+//     // #4
+//     test('Send {surname: "da Verrazzano"}', function (done) {
+//       assert.fail();
+
+//       done();
+//     });
+//   });
 });
 
+    
 const Browser = require('zombie');
 
 suite('Functional Tests with Zombie.js', function () {

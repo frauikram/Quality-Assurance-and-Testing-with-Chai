@@ -81,9 +81,10 @@ suite('Unit Tests', function () {
       assert.isBelow(2 / 3, 1);
     });
     // #10
+    // Test if a Value Falls within a Specific Range
     test('#approximately', function () {
-      assert.fail(weirdNumbers(0.5), 1, 0);
-      assert.fail(weirdNumbers(0.2), 1, 0);
+      assert.approximately(weirdNumbers(0.5), 1, 0.5);
+      assert.approximately(weirdNumbers(0.2), 1, 0.8); //for all values
     });
   });
 

@@ -65,6 +65,7 @@ suite('Unit Tests', function () {
 
   suite('Comparisons', function () {
     // #8
+    // Compare the Properties of Two Elements
     test('#isAbove, #isAtMost', function () {
       assert.isAtMost('hello'.length, 5);
       assert.isAbove(1, 0);
@@ -72,11 +73,12 @@ suite('Unit Tests', function () {
       assert.isAtMost(1 - Math.random(), 1);
     });
     // #9
+    // Test if One Value is Below or At Least as Large as Another
     test('#isBelow, #isAtLeast', function () {
-      assert.fail('world'.length, 5);
-      assert.fail(2 * Math.random(), 0);
-      assert.fail(5 % 2, 2);
-      assert.fail(2 / 3, 1);
+      assert.isAtLeast('world'.length, 5);
+      assert.isAtLeast(2 * Math.random(), 0);
+      assert.isBelow(5 % 2, 2);
+      assert.isBelow(2 / 3, 1);
     });
     // #10
     test('#approximately', function () {

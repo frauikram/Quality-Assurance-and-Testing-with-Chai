@@ -10,14 +10,15 @@ suite('Functional Tests', function () {
   this.timeout(5000);
   suite('Integration tests with chai-http', function () {
     // #1
+    // Run Functional Tests on API Endpoints using Chai-HTTP
     test('Test GET /hello with no name', function (done) {
       chai
         .request(server)
         .keepOpen()
         .get('/hello')
         .end(function (err, res) {
-          assert.fail(res.status, 200);
-          assert.fail(res.text, 'hello Guest');
+          assert.equal(res.status, 200);
+          assert.equal(res.text, 'hello Guest');
           done();
         });
     });

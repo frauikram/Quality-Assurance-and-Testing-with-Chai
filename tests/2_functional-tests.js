@@ -75,29 +75,42 @@ suite('Functional Tests', function () {
           done();
         });
     });
-//     // #4
-//     test('Send {surname: "da Verrazzano"}', function (done) {
-//       assert.fail();
+    // #4
+    // Run Functional Tests on an API Response using Chai-HTTP IV - PUT method
+    test('Send {surname: "da Verrazzano"}', function(done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .put('/travellers')
+        .send({
+          "surname": "da Verrazzano"
+        })
+        .end(function(err, res) {
+          assert.equal(res.status, 200);
+          assert.equal(res.type, "application/json");
+          assert.equal(res.body.name, "Giovanni");
+          assert.equal(res.body.surname, "da Verrazzano");
 
-//       done();
-//     });
-//   });
+          done();
+        });
+    });
+  });
 });
 
-    
 const Browser = require('zombie');
+Browser.site = "https://boilerplate-mochachai.msrehmaikram.repl.co/"
+const browser = new Browser();
+suiteSetup(function(done) {
+  return browser.visit('/', done);
+});
 
-suite('Functional Tests with Zombie.js', function () {
+suite('Functional Tests with Zombie.js', function() {
   this.timeout(5000);
-
-
-
-  suite('Headless browser', function () {
+  suite('Headless browser', function() {
     test('should have a working "site" property', function() {
       assert.isNotNull(browser.site);
     });
   });
-
   suite('"Famous Italian Explorers" form', function () {
     // #5
     test('Submit the surname "Colombo" in the HTML form', function (done) {
